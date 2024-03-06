@@ -1,0 +1,53 @@
+.pokemonList {
+    display: grid;
+    grid-template-columns: repeat(2, 0fr);
+    grid-gap: 20px;
+    column-gap: 120px;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.pokemonContainer {
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+background-color: rgb(188, 188, 223);
+transition: .1s ease-in-out;
+border-radius: 15px;
+padding-left: 15px;
+font-weight: lighter;
+color: black;
+width: 420px;
+
+
+    > img {
+        height: 150px;
+    }
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(144, 144, 223, 0.884);
+        
+    }
+}
+
+.detailsLink {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.pokemonContainer button { 
+    background-color: transparent;
+    border: none;
+    cursor:alias;
+    font-size: 1.7rem;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 60vh;
+}

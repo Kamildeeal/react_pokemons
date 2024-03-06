@@ -1,0 +1,67 @@
+.container {
+    display: flex;
+  flex-direction: column;
+  min-height: 59vh;
+
+}
+
+.details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;    
+}
+
+.details button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    font-family: "Kode Mono", monospace;
+    font-weight: bold;
+    font-size: 1.3rem;
+    
+}
+
+.pokemonDetailsContainter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    background-color: rgb(188, 188, 223);
+    transition: .1s ease-in-out;
+    border-radius: 15px;
+    font-weight: lighter;
+    color: black;
+    width: 400px;
+    height: 500px;
+    margin: 24px
+}
+
+.pokemonDetailsContainter img {
+    height: 200px;
+}
+
+.pokemonDetailsContainter p {
+    font-family: "Kode Mono", monospace;
+    text-align: center;
+}
+.goBackLink {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    align-items: center;
+    color: black;
+    font-size: 1.3rem;
+    transition: all 0.2s ease-in-out;
+    margin-left: 30px;
+     
+    &:hover {
+        color: rgb(51, 50, 50);
+    }
+}
