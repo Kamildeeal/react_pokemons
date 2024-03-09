@@ -1,7 +1,6 @@
-import React from 'react';
-import '../styles/styles.css'
-import Navbar  from './Navbar'
-
+import React from "react";
+import "../styles/styles.css";
+import Navbar from "./Navbar";
 
 const Header: React.FC = () => {
   return (
@@ -11,4 +10,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header
+export default Header;

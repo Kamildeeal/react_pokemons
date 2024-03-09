@@ -45,6 +45,19 @@ width: 420px;
     font-size: 1.7rem;
 }
 
+.pokemonContainer button:hover::after {
+    content: 'Add or remove pokemon from favorites list'; 
+    font-size: 1rem;
+    background-color: #5555554f;
+    color: white;
+    border-radius: 4px;
+    padding: 5px;  
+    position: absolute;
+    transform: translateX(10%);
+    transform: translateY(200%);
+    z-index: 1; 
+}
+
 .content {
     display: flex;
     flex-direction: column;

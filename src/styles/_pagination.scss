@@ -20,3 +20,14 @@
     background-color: rgb(39, 173, 129);
     color: white;
 }
+
+.pagination .active {
+    font-weight: bolder;
+    background-color: rgb(39, 173, 129);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 46px;
+    width: 46px;
+    background-size: 30px 30px;
+}

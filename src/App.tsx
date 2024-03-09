@@ -1,34 +1,23 @@
-import React from 'react';
-import './styles/styles.css'
-import Header  from './compontents/Header'
-import Main from './compontents/Main';
-import Footer from './compontents/Footer';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-
-import { Toast } from 'react-hot-toast';
-import toast from 'react-hot-toast';
-
-
-
-
+import React from "react";
+import "./styles/styles.css";
+import Header from "./compontents/Header";
+import Main from "./compontents/Main";
+import Footer from "./compontents/Footer";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 function App() {
-
-  const router = createBrowserRouter ([
+  const router = createBrowserRouter([
     {
-      path: '/',
-      element: <Main/>
-    }
-])
-  
+      path: "/",
+      element: <Main />,
+    },
+  ]);
+
   return (
     <div className="app-wrapper">
-        
-       <Header />
-       <Main /> 
+      <Header />
+      <Main />
       <Footer />
-     
-
     </div>
   );
 }
