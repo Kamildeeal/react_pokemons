@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/styles.css";
 import { Link } from "react-router-dom";
-
-interface FavouritesProps {
-  favourites: string[];
-  pokemon: Pokemon[];
-  onRemove: (pokemonName: string) => void;
-}
+import { usePokemonContext } from "../providers/Pokemon/PokemonContext";
 
 interface Pokemon {
   name: string;
@@ -18,6 +13,7 @@ interface Pokemon {
   };
   stats: { base_stat: number; stat: { name: string } }[];
 }
+
 const getTypeColor = (typeName: string): string => {
   switch (typeName) {
     case "grass":
@@ -31,11 +27,17 @@ const getTypeColor = (typeName: string): string => {
   }
 };
 
-const Favourite: React.FC<FavouritesProps> = ({
-  favourites,
-  pokemon,
-  onRemove,
-}) => {
+const Favourite = () => {
+  const {
+    favorites: favourites,
+    data,
+    removeFromFavorites: onRemove,
+  } = usePokemonContext();
+
+  const pokemon = data.filter((poke: { name: any }) =>
+    favourites.includes(poke.name)
+  );
+
   const isFavoritesEmpty = favourites.length === 0;
 
   return (
@@ -62,7 +64,7 @@ const Favourite: React.FC<FavouritesProps> = ({
             <div className="nameImg2">
               <h3>Types:</h3>
               <ul>
-                {pokemon.types.map((type, index) => (
+                {pokemon.types.map((type: any, index: number) => (
                   <li key={index}>{type.type.name}</li>
                 ))}
               </ul>
@@ -70,7 +72,7 @@ const Favourite: React.FC<FavouritesProps> = ({
             <div className="nameImg2">
               <h3>Abilites:</h3>
               <ul>
-                {pokemon.abilities.map((ability, index) => (
+                {pokemon.abilities.map((ability: any, index: number) => (
                   <li key={index}>{ability.ability.name}</li>
                 ))}
               </ul>
@@ -78,7 +80,7 @@ const Favourite: React.FC<FavouritesProps> = ({
             <div className="nameImg2">
               <h3>Stats:</h3>
               <ul>
-                {pokemon.stats.map((stat, index) => (
+                {pokemon.stats.map((stat: any, index: number) => (
                   <li key={index}>
                     {stat.stat.name}: {stat.base_stat}
                   </li>

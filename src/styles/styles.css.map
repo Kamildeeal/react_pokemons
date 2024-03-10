@@ -7,7 +7,7 @@
     "_animations.scss",
     "_header.scss",
     "_variables.scss",
-    "_nawbar.scss",
+    "_navbar.scss",
     "_buttons.scss",
     "_pagination.scss",
     "_searchBar.scss",

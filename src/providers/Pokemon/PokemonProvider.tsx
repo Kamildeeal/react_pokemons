@@ -1,24 +1,16 @@
-import React from "react";
-import { useEffect, useState, useRef } from "react";
-import "../styles/styles.css";
-import PokemonList from "./PokemonList";
-import { ReactDOM } from "react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import PokemonDetails from "./PokemonDetails";
-import NotFound from "./NotFound";
-import Favourite from "./Favourites";
+import React, { PropsWithChildren, useEffect, useState, useRef } from "react";
+import { PokemonContext } from "./PokemonContext";
 
-const Main: React.FC = () => {
+export const PokemonProvider = ({ children }: PropsWithChildren) => {
   const [pokemonData, setPokemonData] = useState<any>([]);
-  const [loading, setLoading] = useState<boolean>();
+  const [loading, setLoading] = useState<boolean>(false);
   const [url, setUrl] = useState<string>(
     "https://pokeapi.co/api/v2/pokemon/?limit=100"
   );
-  const [inputText, setInputText] = useState<string>("");
-  const [favorites, setFavorites] = useState<string[]>([]);
-
   const abortControllerRef = useRef<AbortController | null>(null);
   const [fetching, setFetching] = useState<boolean>(false);
+
+  const [favorites, setFavorites] = useState<string[]>([]);
 
   const toggleFavorite = (pokemonName: string) => {
     if (favorites.includes(pokemonName)) {
@@ -31,41 +23,6 @@ const Main: React.FC = () => {
   const removeFromFavorites = (pokemonName: string) => {
     setFavorites(favorites.filter((name) => name !== pokemonName));
   };
-
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: (
-        <PokemonList
-          pokemon={pokemonData}
-          loading={loading}
-          toggleFavorite={toggleFavorite}
-          favorites={favorites}
-        />
-      ),
-      errorElement: <NotFound />,
-    },
-    {
-      path: "/details",
-      element: <PokemonDetails pokemon={pokemonData} loading={loading} />,
-    },
-    {
-      path: "/details/:pokemonName",
-      element: <PokemonDetails pokemon={pokemonData} loading={loading} />,
-    },
-    {
-      path: "/favourites",
-      element: (
-        <Favourite
-          favourites={favorites}
-          pokemon={pokemonData.filter((poke: { name: any }) =>
-            favorites.includes(poke.name)
-          )}
-          onRemove={removeFromFavorites}
-        />
-      ),
-    },
-  ]);
 
   useEffect(() => {
     let isMounted = true;
@@ -111,11 +68,18 @@ const Main: React.FC = () => {
       abortControllerRef.current?.abort();
     };
   }, [url]);
+
   return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
+    <PokemonContext.Provider
+      value={{
+        data: pokemonData,
+        loading,
+        favorites,
+        toggleFavorite,
+        removeFromFavorites,
+      }}
+    >
+      {children}
+    </PokemonContext.Provider>
   );
 };
-
-export default Main;

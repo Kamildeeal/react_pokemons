@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/styles.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
-interface PokemonListProps {
-  pokemon: Pokemon[];
-  loading: boolean | undefined;
-}
+import { usePokemonContext } from "../providers/Pokemon/PokemonContext";
 
 interface Pokemon {
   name: string;
@@ -18,7 +14,9 @@ interface Pokemon {
   };
 }
 
-const PokemonDetails: React.FC<PokemonListProps> = ({ pokemon, loading }) => {
+const PokemonDetails = () => {
+  const { data: pokemon, loading } = usePokemonContext();
+
   const params = useParams<{ pokemonName: string }>();
   const navigate = useNavigate();
   const [currentPokemonIndex, setCurrentPokemonIndex] = useState<number>(0);

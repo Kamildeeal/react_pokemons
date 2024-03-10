@@ -1,24 +1,20 @@
 import React from "react";
 import "./styles/styles.css";
 import Header from "./compontents/Header";
-import Main from "./compontents/Main";
 import Footer from "./compontents/Footer";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes/router";
+import { PokemonProvider } from "./providers/Pokemon/PokemonProvider";
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Main />,
-    },
-  ]);
-
   return (
-    <div className="app-wrapper">
-      <Header />
-      <Main />
-      <Footer />
-    </div>
+    <PokemonProvider>
+      <div className="app-wrapper">
+        <Header />
+        <RouterProvider router={router} />
+        <Footer />
+      </div>
+    </PokemonProvider>
   );
 }
 

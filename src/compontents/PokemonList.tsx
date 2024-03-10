@@ -7,13 +7,7 @@ import Favourite from "./Favourites";
 import TextField from "@mui/material/TextField";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-interface PokemonListProps {
-  favorites: string[];
-  pokemon: Pokemon[] | any[];
-  loading: boolean | undefined;
-  toggleFavorite: (pokemonName: string) => void;
-}
+import { usePokemonContext } from "../providers/Pokemon/PokemonContext";
 
 interface Pokemon {
   favorites: string[];
@@ -24,12 +18,14 @@ interface Pokemon {
   };
 }
 
-const PokemonList: React.FC<PokemonListProps> = ({
-  pokemon,
-  loading,
-  toggleFavorite,
-  favorites,
-}) => {
+const PokemonList = () => {
+  const {
+    data: pokemon,
+    loading,
+    toggleFavorite,
+    favorites,
+  } = usePokemonContext();
+
   const [currentItems, setCurrentItems] = useState<Pokemon[]>([]);
   const [pageCount, setPageCount] = useState<number>(0);
   const [itemOffset, setItemOffset] = useState<number>(0);
