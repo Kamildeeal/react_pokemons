@@ -1,7 +1,8 @@
 import React from "react";
+import { Pokemon } from "../../types/pokemon";
 
 type State = {
-  data: any[];
+  data: Pokemon[];
   loading: boolean;
   favorites: string[];
   toggleFavorite: (pokemonName: string) => void;

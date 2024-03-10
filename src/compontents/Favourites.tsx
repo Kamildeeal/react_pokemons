@@ -3,17 +3,6 @@ import "../styles/styles.css";
 import { Link } from "react-router-dom";
 import { usePokemonContext } from "../providers/Pokemon/PokemonContext";
 
-interface Pokemon {
-  name: string;
-  types: { type: { name: string } }[];
-  abilities: { ability: { name: string } }[];
-  id: number;
-  sprites: {
-    front_default: string;
-  };
-  stats: { base_stat: number; stat: { name: string } }[];
-}
-
 const getTypeColor = (typeName: string): string => {
   switch (typeName) {
     case "grass":

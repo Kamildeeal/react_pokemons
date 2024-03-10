@@ -1,7 +1,7 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { Screen } from "./screens";
-import PokemonList from "../compontents/PokemonList";
+import PokemonList from "../compontents/PokemonList/PokemonList";
 import NotFound from "../compontents/NotFound";
 import PokemonDetails from "../compontents/PokemonDetails";
 import Favourite from "../compontents/Favourites";

@@ -1,13 +1,14 @@
 import React from "react";
-import "../styles/styles.css";
+import "../../styles/styles.css";
 import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
-import Favourite from "./Favourites";
+import Favourite from "../Favourites";
 import TextField from "@mui/material/TextField";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { usePokemonContext } from "../providers/Pokemon/PokemonContext";
+import { usePokemonContext } from "../../providers/Pokemon/PokemonContext";
+import { usePokemonList } from "./usePokemonList";
 
 interface Pokemon {
   favorites: string[];
@@ -20,50 +21,19 @@ interface Pokemon {
 
 const PokemonList = () => {
   const {
-    data: pokemon,
+    handleInputChange,
+    inputText,
+    handlePageClick,
+    pageCount,
+    filteredPokemon,
+    itemOffset,
+    itemsPerPage,
+    notify,
     loading,
     toggleFavorite,
     favorites,
-  } = usePokemonContext();
+  } = usePokemonList();
 
-  const [currentItems, setCurrentItems] = useState<Pokemon[]>([]);
-  const [pageCount, setPageCount] = useState<number>(0);
-  const [itemOffset, setItemOffset] = useState<number>(0);
-  const [inputText, setInputText] = useState<string>("");
-  const itemsPerPage: number = 20;
-
-  useEffect(() => {
-    const endOffset = itemOffset + itemsPerPage;
-    // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    const currentItems = pokemon.slice(itemOffset, endOffset);
-    setCurrentItems(currentItems);
-
-    const pageCount = Math.ceil(pokemon.length / itemsPerPage);
-    setPageCount(pageCount);
-  }, [itemOffset, itemsPerPage, pokemon]);
-
-  const handlePageClick = (event: any) => {
-    const newOffset = (event.selected * itemsPerPage) % pokemon.length;
-    setItemOffset(newOffset);
-  };
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const text = event.target.value.toLowerCase();
-    setInputText(text);
-    setItemOffset(0);
-  };
-
-  const filteredPokemon = pokemon.filter((poke) =>
-    poke.name.toLowerCase().includes(inputText)
-  );
-
-  const notify = (pokemonName: any) => {
-    if (favorites.includes(pokemonName)) {
-      toast(`Pokemon ${pokemonName} removed from favorites!`);
-    } else {
-      toast(`Pokemon ${pokemonName} added to favorites!`);
-    }
-  };
   return (
     <div>
       <Link className="customLink" to="/favourites">
