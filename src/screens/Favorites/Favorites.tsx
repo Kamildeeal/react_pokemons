@@ -1,38 +1,23 @@
 import React, { useEffect, useState } from "react";
-import "../styles/styles.css";
+import "../../styles/styles.css";
 import { Link } from "react-router-dom";
-import { usePokemonContext } from "../providers/Pokemon/PokemonContext";
-
-const getTypeColor = (typeName: string): string => {
-  switch (typeName) {
-    case "grass":
-      return "#78C850";
-    case "fire":
-      return "#F08030";
-    case "water":
-      return "#6890F0";
-    default:
-      return "#A8A878";
-  }
-};
+import { Screen } from "../../navigation/screens";
+import { useFavorites } from "./useFavorites";
 
 const Favourite = () => {
   const {
-    favorites: favourites,
+    pokemon,
+    isFavoritesEmpty,
+    favorites,
     data,
-    removeFromFavorites: onRemove,
-  } = usePokemonContext();
-
-  const pokemon = data.filter((poke: { name: any }) =>
-    favourites.includes(poke.name)
-  );
-
-  const isFavoritesEmpty = favourites.length === 0;
+    onRemove,
+    getPokemonType,
+  } = useFavorites();
 
   return (
     <div className="favoritesPage">
       <h1>Favourite Pokemons</h1>
-      <Link className="goBackLink" to="/">
+      <Link className="goBackLink" to={Screen.Root}>
         ⬅️ Go to Pokemon List
       </Link>
       {isFavoritesEmpty ? (
@@ -43,7 +28,7 @@ const Favourite = () => {
             key={pokemon.id}
             className="displayedPokemon"
             style={{
-              backgroundColor: getTypeColor(pokemon.types[0].type.name),
+              backgroundColor: getPokemonType(pokemon.types[0].type.name),
             }}
           >
             <div className="nameImg">

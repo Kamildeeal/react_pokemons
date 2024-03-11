@@ -2,11 +2,11 @@ import React from "react";
 import "../styles/styles.css";
 import TextField from "@mui/material/TextField";
 
-interface Pokemon {
-  pokemon: string[];
+interface Props {
+  pokemon: object[];
 }
 
-const SearchBox: React.FC<Pokemon> = ({ pokemon }) => {
+const SearchBox = ({ pokemon }: Props) => {
   return (
     <div className="search">
       <h1>React Search</h1>

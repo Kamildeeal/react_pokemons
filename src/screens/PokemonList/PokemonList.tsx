@@ -1,14 +1,12 @@
 import React from "react";
 import "../../styles/styles.css";
-import { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
-import Favourite from "../Favourites";
 import TextField from "@mui/material/TextField";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { usePokemonContext } from "../../providers/Pokemon/PokemonContext";
 import { usePokemonList } from "./usePokemonList";
+import { Screen } from "../../navigation/screens";
 
 interface Pokemon {
   favorites: string[];
@@ -36,8 +34,8 @@ const PokemonList = () => {
 
   return (
     <div>
-      <Link className="customLink" to="/favourites">
-        Favourites
+      <Link className="customLink" to={Screen.Favorites}>
+        Favorites
       </Link>
       <div className="content">
         <div className="search">
@@ -74,7 +72,7 @@ const PokemonList = () => {
               .map((item) => (
                 <Link
                   key={item.id}
-                  to={`/details/${item.name}`}
+                  to={`${Screen.Details}/${item.name}`}
                   className="detailsLink"
                 >
                   <div key={item.id} className="pokemonContainer">

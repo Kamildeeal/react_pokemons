@@ -1,10 +1,10 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { Screen } from "./screens";
-import PokemonList from "../compontents/PokemonList/PokemonList";
+import PokemonList from "../screens/PokemonList/PokemonList";
 import NotFound from "../compontents/NotFound";
-import PokemonDetails from "../compontents/PokemonDetails";
-import Favourite from "../compontents/Favourites";
+import PokemonDetails from "../screens/PokemonDetails/PokemonDetails";
+import Favorites from "../screens/Favorites/Favorites";
 
 export const router = createBrowserRouter([
   {
@@ -13,15 +13,11 @@ export const router = createBrowserRouter([
     errorElement: <NotFound />,
   },
   {
-    path: Screen.Details,
-    element: <PokemonDetails />,
-  },
-  {
-    path: "/details/:pokemonName",
+    path: `${Screen.Details}/:pokemonName`,
     element: <PokemonDetails />,
   },
   {
     path: Screen.Favorites,
-    element: <Favourite />,
+    element: <Favorites />,
   },
 ]);

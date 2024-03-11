@@ -19,7 +19,6 @@ export const usePokemonList = () => {
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
     const currentItems = pokemon.slice(itemOffset, endOffset);
     setCurrentItems(currentItems);
 

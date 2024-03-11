@@ -1,6 +1,11 @@
 import React, { PropsWithChildren, useEffect, useState, useRef } from "react";
 import { PokemonContext } from "./PokemonContext";
 
+interface FetchedData {
+  respone: object[];
+  url: string;
+}
+
 export const PokemonProvider = ({ children }: PropsWithChildren) => {
   const [pokemonData, setPokemonData] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -47,14 +52,14 @@ export const PokemonProvider = ({ children }: PropsWithChildren) => {
         setFetching(false);
       }
     };
-    const getEachPokemon = async (response: any) => {
+    const getEachPokemon = async (response: FetchedData[]) => {
       for (const item of response) {
         try {
           const request = await fetch(item.url);
           const responseData = await request.json();
-          setPokemonData((prevData: any[]) => {
+          setPokemonData((prevData: object[]) => {
             const newData = [...prevData, responseData];
-            newData.sort((a: any, b: any) => (a.id > b.id ? 1 : -1));
+            newData.sort((a, b) => (a.id > b.id ? 1 : -1));
             return newData;
           });
         } catch (error) {

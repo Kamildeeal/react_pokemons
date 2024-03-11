@@ -6,7 +6,7 @@ import facebookLogo from "../images/icon-facebook.svg";
 import twitterLogo from "../images/icon-twitter.svg";
 import youtubeLogo from "../images/icon-youtube.svg";
 
-const Footer: React.FC = () => {
+const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__logo">

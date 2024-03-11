@@ -5,7 +5,7 @@ import "../styles/styles.css";
 import pokemonSVG from "../images/pokemon-23.svg";
 import { Link } from "react-router-dom";
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 1024);
 
