@@ -38,7 +38,7 @@ const Navbar = () => {
   return (
     <>
       <div id="overlay"></div>
-      <nav className="nawbar flex-jc-sb">
+      <nav className="navbar flex-jc-sb">
         <div className="header__logo">
           <a href="#">
             <img src={pokemonSVG} alt="pokemon logo" />
