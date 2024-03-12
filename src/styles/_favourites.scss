@@ -45,14 +45,26 @@
   align-items: center;
   flex-direction: row;
   margin-top: 24px;
-  height: 255px;
+  height: 265px;
   width: 900px;
   border-radius: 30px;
   box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.3);
+  @include breakpoint-down(medium) {
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-width: 320px;
+    width: auto;
+    height: auto;
+  }
 }
 
 .displayedPokemon img {
   height: 200px;
+
+  @include breakpoint-down(medium) {
+    flex: 2;
+    margin-bottom: 10px;
+  }
 }
 
 .nameImg {
@@ -61,19 +73,61 @@
   justify-content: center;
   align-items: center;
   width: 200px;
+  margin-top: 20px;
+  @include breakpoint-down(medium) {
+    height: 200px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+  }
 }
 
-.nameImg2 {
+.nameImg p {
+  @include breakpoint-down(medium) {
+    font-size: 1.2rem;
+    padding: 0px;
+    margin: 0px;
+  }
+}
+
+.nameTypes,
+.nameAbilities,
+.nameStats {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   height: 100%;
   width: 200px;
+  @include breakpoint-down(medium) {
+    width: auto;
+    margin-bottom: 10px;
+  }
 }
 
-.nameImg2 ul {
+.wrapperTypesAbilities {
+  display: flex;
+  @include breakpoint-down(medium) {
+    .wrapperTypesAbilities {
+      display: flex;
+    }
+    .nameAbilities,
+    .nameTypes,
+    h3,
+    ul {
+      padding-bottom: 8px;
+      padding-top: 0px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.displayedPokemon ul {
   margin-bottom: 100px;
+  @include breakpoint-down(medium) {
+    width: auto;
+    margin-bottom: 10px;
+  }
 }
 
 .cross {
@@ -83,4 +137,41 @@
   margin-right: 40px;
   margin-left: 40px;
   cursor: pointer;
+
+  @include breakpoint-down(medium) {
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
+.crossContainer {
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  &::after {
+    content: "remove";
+    cursor: pointer;
+    color: rgba(255, 0, 0, 0.534);
+    position: absolute;
+    left: 25%;
+    top: 100%;
+  }
+
+  @include breakpoint-down(medium) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 0px;
+
+    &::after {
+      position: static;
+      content: "remove pokemon";
+      color: rgba(255, 0, 0, 0.534);
+      cursor: pointer;
+    }
+  }
 }

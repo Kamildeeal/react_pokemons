@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "../../styles/styles.css";
 import { Link } from "react-router-dom";
 import { Screen } from "../../navigation/screens";
 import { useFavorites } from "./useFavorites";
 
 const Favourite = () => {
-  const {
-    pokemon,
-    isFavoritesEmpty,
-    favorites,
-    data,
-    onRemove,
-    getPokemonType,
-  } = useFavorites();
+  const { pokemon, isFavoritesEmpty, onRemove, getPokemonType } =
+    useFavorites();
 
   return (
     <div className="favoritesPage">
@@ -32,26 +26,28 @@ const Favourite = () => {
             }}
           >
             <div className="nameImg">
-              <p>{pokemon.name}</p>
+              <p>{pokemon.name.toUpperCase()}</p>
               <img src={pokemon.sprites.front_default} alt={pokemon.name} />
             </div>
-            <div className="nameImg2">
-              <h3>Types:</h3>
-              <ul>
-                {pokemon.types.map((type: any, index: number) => (
-                  <li key={index}>{type.type.name}</li>
-                ))}
-              </ul>
+            <div className="wrapperTypesAbilities">
+              <div className="nameTypes">
+                <h3>Types:</h3>
+                <ul>
+                  {pokemon.types.map((type: any, index: number) => (
+                    <li key={index}>{type.type.name}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="nameAbilities">
+                <h3>Abilities:</h3>
+                <ul>
+                  {pokemon.abilities.map((ability: any, index: number) => (
+                    <li key={index}>{ability.ability.name}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div className="nameImg2">
-              <h3>Abilites:</h3>
-              <ul>
-                {pokemon.abilities.map((ability: any, index: number) => (
-                  <li key={index}>{ability.ability.name}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="nameImg2">
+            <div className="nameStats">
               <h3>Stats:</h3>
               <ul>
                 {pokemon.stats.map((stat: any, index: number) => (
@@ -61,8 +57,11 @@ const Favourite = () => {
                 ))}
               </ul>
             </div>
-            <div onClick={() => onRemove(pokemon.name)} className="cross">
-              ❌
+            <div
+              onClick={() => onRemove(pokemon.name)}
+              className="crossContainer"
+            >
+              <div className="cross">❌</div>
             </div>
           </div>
         ))

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { usePokemonContext } from "../../providers/Pokemon/PokemonContext";
 import { Pokemon } from "../../types/pokemon";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 export const usePokemonList = () => {
   const [currentItems, setCurrentItems] = useState<Pokemon[]>([]);
@@ -58,6 +58,7 @@ export const usePokemonList = () => {
     itemOffset,
     itemsPerPage,
     notify,
+    toast,
     loading,
     toggleFavorite,
     favorites,

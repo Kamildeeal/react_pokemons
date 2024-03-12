@@ -1,9 +1,7 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { useState, useEffect } from "react";
 import "../styles/styles.css";
 import pokemonSVG from "../images/pokemon-23.svg";
-import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
@@ -56,7 +54,6 @@ const Navbar = () => {
           <span></span>
           <span></span>
         </a>
-        {/* <div id="mobile-menu" className={`header__links ${isOpen ? 'open-active' : 'hide-for-mobile'}`}> */}
         <div
           className={` ${
             isHamburgerOpen && isMobile ? "" : "hide-for-mobile header__links"

@@ -3,19 +3,10 @@ import "../../styles/styles.css";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
-import { ToastContainer, toast } from "react-toastify";
+import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { usePokemonList } from "./usePokemonList";
 import { Screen } from "../../navigation/screens";
-
-interface Pokemon {
-  favorites: string[];
-  name: string;
-  id: number;
-  sprites: {
-    front_default: string;
-  };
-}
 
 const PokemonList = () => {
   const {
@@ -60,7 +51,6 @@ const PokemonList = () => {
           pageLinkClassName="page-num"
           previousLinkClassName="page-num"
           nextLinkClassName="page-num"
-          // activeLinkClassName="active"
           activeClassName="active"
         />
         <div className="pokemonList">
@@ -115,7 +105,19 @@ const PokemonList = () => {
           nextLinkClassName="page-num"
           activeClassName="active"
         />
-        <ToastContainer />
+        <ToastContainer
+          position="top-center"
+          autoClose={1500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition={Bounce}
+        />
       </div>
     </div>
   );
