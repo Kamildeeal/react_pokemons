@@ -35,7 +35,9 @@ const Footer = () => {
       </div>
       <div className="footer__cta">
         <button className="footer__button">
-          <span>JOIN</span>
+          <span>
+            Join <br /> club{" "}
+          </span>
         </button>
         <div className="footer__copyright">
           &copy; Pokemon. All Right Reserved.

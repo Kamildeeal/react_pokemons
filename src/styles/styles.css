@@ -451,6 +451,7 @@ body.noscroll {
   display: flex;
   justify-content: center;
   text-align: center;
+  gap: 10px;
 }
 .footer__social-media > a:not(:last-child) {
   margin-right: 28px;
@@ -487,7 +488,7 @@ body.noscroll {
   padding: 1rem;
   border: 3px solid black;
   border-radius: 50%;
-  background: linear-gradient(white, red);
+  background: linear-gradient(to bottom, white 50%, red 50%);
   background-size: 110%;
   background-position: center;
   background-repeat: no-repeat;
@@ -497,8 +498,7 @@ body.noscroll {
 }
 .footer__button > span {
   position: relative;
-  right: 4px;
-  bottom: 15px;
+  bottom: 6px;
   color: black;
 }
 .footer__button > span:hover {
@@ -677,11 +677,7 @@ body.noscroll {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-}
-
-.favoritesPage h1 {
-  position: relative;
+  justify-content: space-between;
 }
 
 .favoritesPage .goBackLink {

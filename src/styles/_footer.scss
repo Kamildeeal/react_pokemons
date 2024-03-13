@@ -29,6 +29,7 @@
     display: flex;
     justify-content: center;
     text-align: center;
+    gap: 10px;
 
     > a:not(:last-child) {
       margin-right: 28px;
@@ -71,7 +72,7 @@
   padding: 1rem;
   border: 3px solid black;
   border-radius: 50%;
-  background: linear-gradient(white, red);
+  background: linear-gradient(to bottom, white 50%, red 50%);
   background-size: 110%;
   background-position: center;
   background-repeat: no-repeat;
@@ -81,8 +82,7 @@
 
   > span {
     position: relative;
-    right: 4px;
-    bottom: 15px;
+    bottom: 6px;
     color: black;
     &:hover {
       color: rgba(41, 39, 39, 0.781);

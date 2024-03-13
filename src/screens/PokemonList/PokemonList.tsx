@@ -117,6 +117,7 @@ const PokemonList = () => {
           pauseOnHover
           theme="light"
           transition={Bounce}
+          onClick={() => (window.location.href = Screen.Favorites)}
         />
       </div>
     </div>
