@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useCallback } from "react";
 import "../../styles/styles.css";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
 import TextField from "@mui/material/TextField";
-import { Bounce, ToastContainer, toast } from "react-toastify";
+import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { usePokemonList } from "./usePokemonList";
 import { Screen } from "../../navigation/screens";
@@ -13,15 +13,48 @@ const PokemonList = () => {
     handleInputChange,
     inputText,
     handlePageClick,
-    pageCount,
-    filteredPokemon,
-    itemOffset,
-    itemsPerPage,
     notify,
     loading,
     toggleFavorite,
     favorites,
+    addLeadingZero,
+    navigate,
+    filteredAndSlicedPokemon,
+    filteredPokemon,
+    itemsPerPage,
   } = usePokemonList();
+
+  const renderPokemonList = useCallback(() => {
+    return filteredAndSlicedPokemon.map((item) => (
+      <Link
+        key={item.id}
+        to={`${Screen.Details}/${item.name}`}
+        className="detailsLink"
+      >
+        <div key={item.id} className="pokemonContainer">
+          <h2>
+            {addLeadingZero(item)} {item.name}
+          </h2>
+          <button
+            onClick={(e) => {
+              notify(item.name);
+              e.preventDefault();
+              toggleFavorite(item.name);
+            }}
+          >
+            {favorites.includes(item.name) ? "❤️" : "🤍"}
+          </button>
+          <img src={item.sprites.front_default} alt="logo" />
+        </div>
+      </Link>
+    ));
+  }, [
+    addLeadingZero,
+    notify,
+    toggleFavorite,
+    favorites,
+    filteredAndSlicedPokemon,
+  ]);
 
   return (
     <div>
@@ -39,64 +72,17 @@ const PokemonList = () => {
             label="type Pokemon name"
           />
         </div>
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel="next >"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={2}
-          pageCount={pageCount}
-          previousLabel="< previous"
-          renderOnZeroPageCount={null}
-          containerClassName="pagination"
-          pageLinkClassName="page-num"
-          previousLinkClassName="page-num"
-          nextLinkClassName="page-num"
-          activeClassName="active"
-        />
+
         <div className="pokemonList">
-          {loading ? (
-            <h1>Loading</h1>
-          ) : (
-            filteredPokemon
-              .slice(itemOffset, itemOffset + itemsPerPage)
-              .map((item) => (
-                <Link
-                  key={item.id}
-                  to={`${Screen.Details}/${item.name}`}
-                  className="detailsLink"
-                >
-                  <div key={item.id} className="pokemonContainer">
-                    <h2>
-                      {item.id < 10
-                        ? "00" + item.id
-                        : item.id < 100
-                        ? "0" + item.id
-                        : item.id}{" "}
-                      {item.name}
-                    </h2>
-                    <button
-                      onClick={(e) => {
-                        {
-                          notify(item.name);
-                        }
-                        e.preventDefault();
-                        toggleFavorite(item.name);
-                      }}
-                    >
-                      {favorites.includes(item.name) ? "❤️" : "🤍"}
-                    </button>
-                    <img src={item.sprites.front_default} alt="logo" />
-                  </div>
-                </Link>
-              ))
-          )}
+          {loading ? <h1>Loading...</h1> : renderPokemonList()}
         </div>
+
         <ReactPaginate
           breakLabel="..."
           nextLabel="next >"
           onPageChange={handlePageClick}
           pageRangeDisplayed={2}
-          pageCount={pageCount}
+          pageCount={Math.ceil(filteredPokemon.length / itemsPerPage)}
           previousLabel="< previous"
           renderOnZeroPageCount={null}
           containerClassName="pagination"
@@ -105,6 +91,7 @@ const PokemonList = () => {
           nextLinkClassName="page-num"
           activeClassName="active"
         />
+
         <ToastContainer
           position="top-center"
           autoClose={1500}
@@ -117,7 +104,7 @@ const PokemonList = () => {
           pauseOnHover
           theme="light"
           transition={Bounce}
-          onClick={() => (window.location.href = Screen.Favorites)}
+          onClick={() => navigate(Screen.Favorites)}
         />
       </div>
     </div>

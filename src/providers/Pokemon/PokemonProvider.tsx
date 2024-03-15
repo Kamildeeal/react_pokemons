@@ -9,10 +9,12 @@ interface FetchedData {
 export const PokemonProvider = ({ children }: PropsWithChildren) => {
   const [pokemonData, setPokemonData] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [url, setUrl] = useState<string>(
     "https://pokeapi.co/api/v2/pokemon/?limit=100"
   );
   const abortControllerRef = useRef<AbortController | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [fetching, setFetching] = useState<boolean>(false);
 
   const [favorites, setFavorites] = useState<string[]>([]);
@@ -82,9 +84,20 @@ export const PokemonProvider = ({ children }: PropsWithChildren) => {
         favorites,
         toggleFavorite,
         removeFromFavorites,
+        addLeadingZero,
       }}
     >
       {children}
     </PokemonContext.Provider>
   );
+};
+
+export const addLeadingZero = (item: { id: number }) => {
+  const idToString = item.id.toString();
+  if (item.id < 10) {
+    return idToString.padStart(2, "00");
+  } else if (item.id < 100) {
+    return idToString.padStart(3, "0");
+  }
+  return idToString;
 };

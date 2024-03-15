@@ -7,6 +7,7 @@ type State = {
   favorites: string[];
   toggleFavorite: (pokemonName: string) => void;
   removeFromFavorites: (pokemonName: string) => void;
+  addLeadingZero: (item: { id: number }) => string;
 };
 
 export const PokemonContext = React.createContext<State>({
@@ -15,6 +16,7 @@ export const PokemonContext = React.createContext<State>({
   favorites: [],
   toggleFavorite: () => null,
   removeFromFavorites: () => null,
+  addLeadingZero: () => "",
 });
 
 export const usePokemonContext = () => React.useContext(PokemonContext);
