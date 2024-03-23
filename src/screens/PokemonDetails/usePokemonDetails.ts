@@ -5,30 +5,37 @@ import { useEffect, useState } from "react";
 import { Screen } from "../../navigation/screens";
 
 export const usePokemonDetails = () => {
-  const { data: pokemon, loading } = usePokemonContext();
+  const { data: pokemon, loading, addLeadingZero } = usePokemonContext();
 
   const params = useParams<{ pokemonName: string }>();
-  const navigate = useNavigate();
+
   const [currentPokemonIndex, setCurrentPokemonIndex] = useState<number>(0);
+
   useEffect(() => {
     const foundPokemonIndex = pokemon.findIndex(
       (p) => p.name === params.pokemonName
     );
     setCurrentPokemonIndex(foundPokemonIndex !== -1 ? foundPokemonIndex : 0);
   }, [pokemon, params.pokemonName]);
+
+  const navigate = useNavigate();
+
   const goToNextPokemon = () => {
     if (currentPokemonIndex < pokemon.length - 1) {
       setCurrentPokemonIndex((prevIndex) => prevIndex + 1);
       navigate(`${Screen.Details}/${pokemon[currentPokemonIndex + 1].name}`);
     }
   };
+
   const goToPreviousPokemon = () => {
     if (currentPokemonIndex > 0) {
       setCurrentPokemonIndex((prevIndex) => prevIndex - 1);
       navigate(`${Screen.Details}/${pokemon[currentPokemonIndex - 1].name}`);
     }
   };
+
   const currentPokemon = pokemon[currentPokemonIndex];
+
   const abilites = currentPokemon.abilities.map(
     (ability) => ability.ability.name
   );
@@ -37,7 +44,6 @@ export const usePokemonDetails = () => {
 
   return {
     params,
-    navigate,
     currentPokemonIndex,
     goToNextPokemon,
     goToPreviousPokemon,
@@ -45,5 +51,6 @@ export const usePokemonDetails = () => {
     types,
     currentPokemon,
     loading,
+    addLeadingZero,
   };
 };

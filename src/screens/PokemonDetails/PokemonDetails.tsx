@@ -6,15 +6,13 @@ import { Screen } from "../../navigation/screens";
 
 const PokemonDetails = () => {
   const {
-    params,
-    navigate,
-    currentPokemonIndex,
     goToNextPokemon,
     goToPreviousPokemon,
     abilites,
     types,
     currentPokemon,
     loading,
+    addLeadingZero,
   } = usePokemonDetails();
 
   if (loading) {
@@ -33,11 +31,7 @@ const PokemonDetails = () => {
         </div>
         <div className="pokemonDetailsContainter">
           <h2>
-            {currentPokemon.id < 10
-              ? "00" + currentPokemon.id
-              : currentPokemon.id < 100
-              ? "0" + currentPokemon.id
-              : currentPokemon.id}{" "}
+            {addLeadingZero(currentPokemon)}
             {currentPokemon.name}
           </h2>
           <img src={currentPokemon.sprites.front_default} alt="logo" />
