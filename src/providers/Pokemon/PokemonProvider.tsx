@@ -94,5 +94,6 @@ export const PokemonProvider = ({ children }: PropsWithChildren) => {
 
 export const addLeadingZero = (item: { id: number }) => {
   const idToString = item.id.toString().padStart(3, "0");
+
   return idToString;
 };
