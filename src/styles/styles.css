@@ -453,6 +453,9 @@ body.noscroll {
   text-align: center;
   gap: 10px;
 }
+.footer__social-media:hover {
+  cursor: pointer;
+}
 .footer__social-media > a:not(:last-child) {
   margin-right: 28px;
 }
@@ -468,14 +471,22 @@ body.noscroll {
 .footer__links > a:hover {
   text-decoration: underline;
 }
-.footer__links.col1 {
+.footer__links.col1 > div {
   margin: 0px;
 }
-.footer__links.col2 {
+.footer__links.col1 > div:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.footer__links.col2 > div {
   margin-bottom: 1.5rem;
 }
+.footer__links.col2 > div:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 @media (min-width: 64em) {
-  .footer__links.col2 {
+  .footer__links.col2 > div {
     margin-bottom: 0;
   }
 }

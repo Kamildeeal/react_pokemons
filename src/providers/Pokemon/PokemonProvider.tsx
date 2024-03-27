@@ -9,15 +9,12 @@ interface FetchedData {
 export const PokemonProvider = ({ children }: PropsWithChildren) => {
   const [pokemonData, setPokemonData] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [url, setUrl] = useState<string>(
-    "https://pokeapi.co/api/v2/pokemon/?limit=100"
-  );
   const abortControllerRef = useRef<AbortController | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [fetching, setFetching] = useState<boolean>(false);
-
   const [favorites, setFavorites] = useState<string[]>([]);
+
+  const url: string = "https://pokeapi.co/api/v2/pokemon/?limit=100";
 
   const toggleFavorite = (pokemonName: string) => {
     if (favorites.includes(pokemonName)) {
@@ -59,7 +56,7 @@ export const PokemonProvider = ({ children }: PropsWithChildren) => {
         try {
           const request = await fetch(item.url);
           const responseData = await request.json();
-          setPokemonData((prevData: object[]) => {
+          setPokemonData((prevData: FetchedData[]) => {
             const newData = [...prevData, responseData];
             newData.sort((a, b) => (a.id > b.id ? 1 : -1));
             return newData;

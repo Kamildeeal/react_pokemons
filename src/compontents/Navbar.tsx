@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/styles.css";
 import pokemonSVG from "../images/pokemon-23.svg";
 import useWindowDimensions from "../hooks/useWindowDimensions";
+import LinkNavbar from "./LinkNavbar";
 
 const Navbar = () => {
   const { toggleMenu, isMobile, isMenuOpen } = useWindowDimensions();
@@ -32,18 +33,10 @@ const Navbar = () => {
             isMenuOpen && isMobile ? "" : "hide-for-mobile header__links"
           } ${isMenuOpen && isMobile ? "open-active" : ""}`}
         >
-          <a className="open-active_a" href="#">
-            Pokédex
-          </a>
-          <a className="open-active_a" href="#">
-            Pokémon news
-          </a>
-          <a className="open-active_a" href="#">
-            Blog
-          </a>
-          <a className="open-active_a" href="#">
-            Contact
-          </a>
+          <LinkNavbar>Pokédex</LinkNavbar>
+          <LinkNavbar>Pokémon news</LinkNavbar>
+          <LinkNavbar>Blog</LinkNavbar>
+          <LinkNavbar>Contact</LinkNavbar>
         </div>
         <button className="navBtn hide-for-mobile">
           <span className="background"></span>

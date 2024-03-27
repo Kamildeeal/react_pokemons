@@ -31,6 +31,10 @@
     text-align: center;
     gap: 10px;
 
+    &:hover {
+      cursor: pointer;
+    }
+
     > a:not(:last-child) {
       margin-right: 28px;
     }
@@ -49,12 +53,20 @@
         text-decoration: underline;
       }
     }
-    &.col1 {
+    &.col1 > div {
       margin: 0px;
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
     }
 
-    &.col2 {
+    &.col2 > div {
       margin-bottom: 1.5rem;
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
 
       @include breakpoint-up(large) {
         margin-bottom: 0;
