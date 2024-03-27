@@ -1,0 +1,10 @@
+@import "variables";
+
+.navbar {
+  background-color: $darkBlue;
+  height: 8em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 4px solid black;
+}
